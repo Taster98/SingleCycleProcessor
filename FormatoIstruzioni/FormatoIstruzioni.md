@@ -12,11 +12,14 @@ Queste hanno un primo operando sorgente a registro, un secondo operando sorgente
 | 31:28 | 27:26 | 25:20 | 19:16 | 15:12 | 11:0 |
 | :---: | :---: | :---: | :---: | :---: | :---: |
 | cond | op(00) | funct | Rn | Rd | Src2 |
+
+
 L'operazione che l'istruzione deve svolgere è codificata in <b>op</b> (OPcode) e <b>funct</b>. Il campo <b>cond</b> codifica l'eventuale esecuzione condizionata sulla base dei flag. Per le istruzioni non condizionate si ha <b>cond=1110</b>. Nelle operazioni di elaborazione dati si ha <b>op=00</b>. Gli <b>operandi</b> sono codificati in 3 campi: <b>Rn</b> è il registro del primo operando sorgente, <b>Src2</b> è il secondo operando sorgente, <b>Rd</b> è il registro destinazione. Il Src2 può contenere un immediato da 8 bit oppure un registro o un registro traslato di un registro.
 ### Funct
 | 25 | 24:21 | 20 |
 | :---: | :---: | :---: |
 | I | cmd | S |
+
 Il bit <b>I</b> vale 1 quando il campo Src2 è immediato, <b>S</b> vale 1 quando l'istruzione setta i flag di condizione (es. ADDS). I bit <b>cmd</b> invece codificano il comando.
 
 ## Istruzioni di accesso a memoria
