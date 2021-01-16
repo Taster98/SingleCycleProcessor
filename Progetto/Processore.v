@@ -32,6 +32,9 @@ module Processore(
     wire Branch;
     wire ALUOp;
     wire [1:0]FlagW;
+    wire PCS;
+    wire RegW;
+    wire MemW;
     // DATA PATH
     //Mi istanzio intanto i vari pezzetti fatti finora
     //MULTIPLEXER PER SCEGLIERE COME FARE COL PC
@@ -62,7 +65,11 @@ module Processore(
     MemData mdata(ReadData, ALUResult, WriteData,MemWrite,clk);
 
     // CONTROL PATH
-    PCLogic pclogic(PCSrc,Instr[15:12],Branch,);
-    MainDecoder mainDec(Branch, MemtoReg, MemWrite, ALUSrc, ImmSrc, RegWrite, RegSrc, ALUOp, Instr[27:26],Instr[25], Instr[20]);
+    //Decoder
+    PCLogic pclogic(PCS,Instr[15:12],Branch,RegW);
+    MainDecoder mainDec(Branch, MemtoReg, MemW, ALUSrc, ImmSrc, RegW, RegSrc, ALUOp, Instr[27:26],Instr[25], Instr[20]);
     ALUDecoder aludec(ALUControl, FlagW, Instr[25:21], ALUOp);
+    //Logica condizionale
+    //Istanzio i flag di stato 
+    stato CPSR(PCSrc, RegWrite, MemWrite, ALUFlags, Instr[31:28], FlagW, PCS, RegW, MemW, clk);
 endmodule

@@ -22,10 +22,10 @@ initial
 always @(posedge clk)
     begin
         if(WE)
-            data[A] <= WD; 
+            data[A[31:2]] <= WD; 
     end
 
 //Infine la lettura dalla memoria
 assign
-    RD = data[A];
+    RD = data[A[31:2]];
 endmodule
